@@ -1,0 +1,71 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATtiny13A"</DEVICE>
+ <WORKING_DIR>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.10.348\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.10.348\avrasm\inc\tn13Adef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\Debug\LG_IR.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>LG_IR.hex</FILE>
+  <FILE>LG_IR.eep</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>LG_IR.map</FILE>
+  <FILE>LG_IR.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <mi_var><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>13</LINE></mi_var>
+  <old_var><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>14</LINE></old_var>
+  <byte_var><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>15</LINE></byte_var>
+  <addr_var><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>16</LINE></addr_var>
+  <data_var><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>17</LINE></data_var>
+  <code_1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>21</LINE></code_1>
+  <code_2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>22</LINE></code_2>
+  <code_3><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>23</LINE></code_3>
+  <RESET><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>32</LINE></RESET>
+  <PCINT0_ISR><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>284</LINE></PCINT0_ISR>
+  <clr_cont><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>113</LINE></clr_cont>
+  <main><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>85</LINE></main>
+  <Q1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>95</LINE></Q1>
+  <to_pd><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>106</LINE></to_pd>
+  <delay_100ms><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>269</LINE></delay_100ms>
+  <boton_sel><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>134</LINE></boton_sel>
+  <power_down><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>120</LINE></power_down>
+  <boton_1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>150</LINE></boton_1>
+  <boton_2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>155</LINE></boton_2>
+  <boton_3><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>160</LINE></boton_3>
+  <boton_x><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>164</LINE></boton_x>
+  <eprom_word_rd><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>172</LINE></eprom_word_rd>
+  <send_trama><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>191</LINE></send_trama>
+  <L1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>174</LINE></L1>
+  <L2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>181</LINE></L2>
+  <IR_long_pulse><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>235</LINE></IR_long_pulse>
+  <send_cmp_bytes><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>202</LINE></send_cmp_bytes>
+  <IR_short_pulse><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>243</LINE></IR_short_pulse>
+  <send_byte><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>210</LINE></send_byte>
+  <T1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>213</LINE></T1>
+  <B1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>217</LINE></B1>
+  <send_bit_0><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>230</LINE></send_bit_0>
+  <T2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>218</LINE></T2>
+  <send_bit_1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>223</LINE></send_bit_1>
+  <delay_560us><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>249</LINE></delay_560us>
+  <delay_4500us><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>259</LINE></delay_4500us>
+  <X1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>251</LINE></X1>
+  <X2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>252</LINE></X2>
+  <Y1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>261</LINE></Y1>
+  <Y2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>262</LINE></Y2>
+  <Z0><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>271</LINE></Z0>
+  <Z1><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>273</LINE></Z1>
+  <Z2><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>274</LINE></Z2>
+  <no_salva><FILE>E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm</FILE><LINE>299</LINE></no_salva>
+ </LABELS>
+</ASSEMBLER_INFO>

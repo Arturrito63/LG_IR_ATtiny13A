@@ -1,0 +1,844 @@
+
+AVRASM ver. 2.2.8  E:\Proyectos Atmel\ATTiny\ATtiny13\LG_IR\LG_IR\main.asm Thu Sep 17 09:53:41 2026
+
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.10.348\avrasm\inc\tn13Adef.inc'
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.10.348\avrasm\inc\tn13Adef.inc'
+                                 
+                                 ;
+                                 
+                                 ;***** Created: 2011-02-09 12:03 ******* Source: ATtiny13A.xml ***********
+                                 ;*************************************************************************
+                                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                                 ;* 
+                                 ;* Number            : AVR000
+                                 ;* File Name         : "tn13Adef.inc"
+                                 ;* Title             : Register/Bit Definitions for the ATtiny13A
+                                 ;* Date              : 2011-02-09
+                                 ;* Version           : 2.35
+                                 ;* Support E-mail    : avr@atmel.com
+                                 ;* Target MCU        : ATtiny13A
+                                 ;* 
+                                 ;* DESCRIPTION
+                                 ;* When including this file in the assembly program file, all I/O register 
+                                 ;* names and I/O register bit names appearing in the data book can be used.
+                                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                                 ;* SRAM is also defined 
+                                 ;* 
+                                 ;* The Register names are represented by their hexadecimal address.
+                                 ;* 
+                                 ;* The Register Bit names are represented by their bit number (0-7).
+                                 ;* 
+                                 ;* Please observe the difference in using the bit names with instructions
+                                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                                 ;* (skip if bit in register set/cleared). The following example illustrates
+                                 ;* this:
+                                 ;* 
+                                 ;* in    r16,PORTB             ;read PORTB latch
+                                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                                 ;* out   PORTB,r16             ;output to PORTB
+                                 ;* 
+                                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                                 ;* rjmp  TOV0_is_set           ;jump if set
+                                 ;* ...                         ;otherwise do something else
+                                 ;*************************************************************************
+                                 
+                                 #ifndef _TN13ADEF_INC_
+                                 #define _TN13ADEF_INC_
+                                 
+                                 
+                                 #pragma partinc 0
+                                 
+                                 ; ***** SPECIFY DEVICE ***************************************************
+                                 .device ATtiny13A
+                                 #pragma AVRPART ADMIN PART_NAME ATtiny13A
+                                 .equ	SIGNATURE_000	= 0x1e
+                                 .equ	SIGNATURE_001	= 0x90
+                                 .equ	SIGNATURE_002	= 0x07
+                                 
+                                 #pragma AVRPART CORE CORE_VERSION V2
+                                 #pragma AVRPART CORE NEW_INSTRUCTIONS lpm rd,z+
+                                 
+                                 
+                                 ; ***** I/O REGISTER DEFINITIONS *****************************************
+                                 ; NOTE:
+                                 ; Definitions marked "MEMORY MAPPED"are extended I/O ports
+                                 ; and cannot be used with IN/OUT instructions
+                                 .equ	SREG	= 0x3f
+                                 .equ	SPL	= 0x3d
+                                 .equ	GIMSK	= 0x3b
+                                 .equ	GIFR	= 0x3a
+                                 .equ	TIMSK0	= 0x39
+                                 .equ	TIFR0	= 0x38
+                                 .equ	SPMCSR	= 0x37
+                                 .equ	OCR0A	= 0x36
+                                 .equ	MCUCR	= 0x35
+                                 .equ	MCUSR	= 0x34
+                                 .equ	TCCR0B	= 0x33
+                                 .equ	TCNT0	= 0x32
+                                 .equ	OSCCAL	= 0x31
+                                 .equ	BODCR	= 0x30
+                                 .equ	TCCR0A	= 0x2f
+                                 .equ	DWDR	= 0x2e
+                                 .equ	OCR0B	= 0x29
+                                 .equ	GTCCR	= 0x28
+                                 .equ	CLKPR	= 0x26
+                                 .equ	PRR	= 0x25
+                                 .equ	WDTCR	= 0x21
+                                 .equ	EEAR	= 0x1e
+                                 .equ	EEDR	= 0x1d
+                                 .equ	EECR	= 0x1c
+                                 .equ	PORTB	= 0x18
+                                 .equ	DDRB	= 0x17
+                                 .equ	PINB	= 0x16
+                                 .equ	PCMSK	= 0x15
+                                 .equ	DIDR0	= 0x14
+                                 .equ	ACSR	= 0x08
+                                 .equ	ADMUX	= 0x07
+                                 .equ	ADCSRA	= 0x06
+                                 .equ	ADCH	= 0x05
+                                 .equ	ADCL	= 0x04
+                                 .equ	ADCSRB	= 0x03
+                                 
+                                 
+                                 ; ***** BIT DEFINITIONS **************************************************
+                                 
+                                 ; ***** AD_CONVERTER *****************
+                                 ; ADMUX - The ADC multiplexer Selection Register
+                                 .equ	MUX0	= 0	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX1	= 1	; Analog Channel and Gain Selection Bits
+                                 .equ	ADLAR	= 5	; Left Adjust Result
+                                 .equ	REFS0	= 6	; Reference Selection Bit 0
+                                 
+                                 ; ADCSRA - The ADC Control and Status register
+                                 .equ	ADPS0	= 0	; ADC  Prescaler Select Bits
+                                 .equ	ADPS1	= 1	; ADC  Prescaler Select Bits
+                                 .equ	ADPS2	= 2	; ADC  Prescaler Select Bits
+                                 .equ	ADIE	= 3	; ADC Interrupt Enable
+                                 .equ	ADIF	= 4	; ADC Interrupt Flag
+                                 .equ	ADATE	= 5	; ADC Auto Trigger Enable
+                                 .equ	ADSC	= 6	; ADC Start Conversion
+                                 .equ	ADEN	= 7	; ADC Enable
+                                 
+                                 ; ADCH - ADC Data Register High Byte
+                                 .equ	ADCH0	= 0	; ADC Data Register High Byte Bit 0
+                                 .equ	ADCH1	= 1	; ADC Data Register High Byte Bit 1
+                                 .equ	ADCH2	= 2	; ADC Data Register High Byte Bit 2
+                                 .equ	ADCH3	= 3	; ADC Data Register High Byte Bit 3
+                                 .equ	ADCH4	= 4	; ADC Data Register High Byte Bit 4
+                                 .equ	ADCH5	= 5	; ADC Data Register High Byte Bit 5
+                                 .equ	ADCH6	= 6	; ADC Data Register High Byte Bit 6
+                                 .equ	ADCH7	= 7	; ADC Data Register High Byte Bit 7
+                                 
+                                 ; ADCL - ADC Data Register Low Byte
+                                 .equ	ADCL0	= 0	; ADC Data Register Low Byte Bit 0
+                                 .equ	ADCL1	= 1	; ADC Data Register Low Byte Bit 1
+                                 .equ	ADCL2	= 2	; ADC Data Register Low Byte Bit 2
+                                 .equ	ADCL3	= 3	; ADC Data Register Low Byte Bit 3
+                                 .equ	ADCL4	= 4	; ADC Data Register Low Byte Bit 4
+                                 .equ	ADCL5	= 5	; ADC Data Register Low Byte Bit 5
+                                 .equ	ADCL6	= 6	; ADC Data Register Low Byte Bit 6
+                                 .equ	ADCL7	= 7	; ADC Data Register Low Byte Bit 7
+                                 
+                                 ; ADCSRB - ADC Control and Status Register B
+                                 .equ	ADTS0	= 0	; ADC Auto Trigger Source 0
+                                 .equ	ADTS1	= 1	; ADC Auto Trigger Source 1
+                                 .equ	ADTS2	= 2	; ADC Auto Trigger Source 2
+                                 
+                                 ; DIDR0 - Digital Input Disable Register 0
+                                 .equ	ADC1D	= 2	; ADC2 Digital input Disable
+                                 .equ	ADC3D	= 3	; ADC3 Digital input Disable
+                                 .equ	ADC2D	= 4	; ADC2 Digital input Disable
+                                 .equ	ADC0D	= 5	; ADC0 Digital input Disable
+                                 
+                                 
+                                 ; ***** ANALOG_COMPARATOR ************
+                                 ; ADCSRB - ADC Control and Status Register B
+                                 .equ	ACME	= 6	; Analog Comparator Multiplexer Enable
+                                 
+                                 ; ACSR - Analog Comparator Control And Status Register
+                                 .equ	ACIS0	= 0	; Analog Comparator Interrupt Mode Select bit 0
+                                 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
+                                 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
+                                 .equ	ACI	= 4	; Analog Comparator Interrupt Flag
+                                 .equ	ACO	= 5	; Analog Compare Output
+                                 .equ	ACBG	= 6	; Analog Comparator Bandgap Select
+                                 .equ	AINBG	= ACBG	; For compatibility
+                                 .equ	ACD	= 7	; Analog Comparator Disable
+                                 
+                                 ; DIDR0 - 
+                                 .equ	AIN0D	= 0	; AIN0 Digital Input Disable
+                                 .equ	AIN1D	= 1	; AIN1 Digital Input Disable
+                                 
+                                 
+                                 ; ***** EEPROM ***********************
+                                 ; EEAR - EEPROM Read/Write Access
+                                 .equ	EEARL	= EEAR	; For compatibility
+                                 .equ	EEAR0	= 0	; EEPROM Read/Write Access bit 0
+                                 .equ	EEAR1	= 1	; EEPROM Read/Write Access bit 1
+                                 .equ	EEAR2	= 2	; EEPROM Read/Write Access bit 2
+                                 .equ	EEAR3	= 3	; EEPROM Read/Write Access bit 3
+                                 .equ	EEAR4	= 4	; EEPROM Read/Write Access bit 4
+                                 .equ	EEAR5	= 5	; EEPROM Read/Write Access bit 5
+                                 
+                                 ; EEDR - EEPROM Data Register
+                                 .equ	EEDR0	= 0	; EEPROM Data Register bit 0
+                                 .equ	EEDR1	= 1	; EEPROM Data Register bit 1
+                                 .equ	EEDR2	= 2	; EEPROM Data Register bit 2
+                                 .equ	EEDR3	= 3	; EEPROM Data Register bit 3
+                                 .equ	EEDR4	= 4	; EEPROM Data Register bit 4
+                                 .equ	EEDR5	= 5	; EEPROM Data Register bit 5
+                                 .equ	EEDR6	= 6	; EEPROM Data Register bit 6
+                                 .equ	EEDR7	= 7	; EEPROM Data Register bit 7
+                                 
+                                 ; EECR - EEPROM Control Register
+                                 .equ	EERE	= 0	; EEPROM Read Enable
+                                 .equ	EEWE	= 1	; EEPROM Write Enable
+                                 .equ	EEPE	= EEWE	; For compatibility
+                                 .equ	EEMWE	= 2	; EEPROM Master Write Enable
+                                 .equ	EEMPE	= EEMWE	; For compatibility
+                                 .equ	EERIE	= 3	; EEProm Ready Interrupt Enable
+                                 .equ	EEPM0	= 4	; 
+                                 .equ	EEPM1	= 5	; 
+                                 
+                                 
+                                 ; ***** PORTB ************************
+                                 ; PORTB - Data Register, Port B
+                                 .equ	PORTB0	= 0	; 
+                                 .equ	PB0	= 0	; For compatibility
+                                 .equ	PORTB1	= 1	; 
+                                 .equ	PB1	= 1	; For compatibility
+                                 .equ	PORTB2	= 2	; 
+                                 .equ	PB2	= 2	; For compatibility
+                                 .equ	PORTB3	= 3	; 
+                                 .equ	PB3	= 3	; For compatibility
+                                 .equ	PORTB4	= 4	; 
+                                 .equ	PB4	= 4	; For compatibility
+                                 .equ	PORTB5	= 5	; 
+                                 .equ	PB5	= 5	; For compatibility
+                                 
+                                 ; DDRB - Data Direction Register, Port B
+                                 .equ	DDB0	= 0	; 
+                                 .equ	DDB1	= 1	; 
+                                 .equ	DDB2	= 2	; 
+                                 .equ	DDB3	= 3	; 
+                                 .equ	DDB4	= 4	; 
+                                 .equ	DDB5	= 5	; 
+                                 
+                                 ; PINB - Input Pins, Port B
+                                 .equ	PINB0	= 0	; 
+                                 .equ	PINB1	= 1	; 
+                                 .equ	PINB2	= 2	; 
+                                 .equ	PINB3	= 3	; 
+                                 .equ	PINB4	= 4	; 
+                                 .equ	PINB5	= 5	; 
+                                 
+                                 
+                                 ; ***** EXTERNAL_INTERRUPT ***********
+                                 ; MCUCR - MCU Control Register
+                                 .equ	ISC00	= 0	; Interrupt Sense Control 0 Bit 0
+                                 .equ	ISC01	= 1	; Interrupt Sense Control 0 Bit 1
+                                 
+                                 ; GIMSK - General Interrupt Mask Register
+                                 .equ	GICR	= GIMSK	; For compatibility
+                                 .equ	PCIE	= 5	; Pin Change Interrupt Enable
+                                 .equ	INT0	= 6	; External Interrupt Request 0 Enable
+                                 
+                                 ; GIFR - General Interrupt Flag register
+                                 .equ	PCIF	= 5	; Pin Change Interrupt Flag
+                                 .equ	INTF0	= 6	; External Interrupt Flag 0
+                                 
+                                 ; PCMSK - Pin Change Enable Mask
+                                 .equ	PCINT0	= 0	; Pin Change Enable Mask Bit 0
+                                 .equ	PCINT1	= 1	; Pin Change Enable Mask Bit 1
+                                 .equ	PCINT2	= 2	; Pin Change Enable Mask Bit 2
+                                 .equ	PCINT3	= 3	; Pin Change Enable Mask Bit 3
+                                 .equ	PCINT4	= 4	; Pin Change Enable Mask Bit 4
+                                 .equ	PCINT5	= 5	; Pin Change Enable Mask Bit 5
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_0 **************
+                                 ; TIMSK0 - Timer/Counter0 Interrupt Mask Register
+                                 .equ	TOIE0	= 1	; Timer/Counter0 Overflow Interrupt Enable
+                                 .equ	OCIE0A	= 2	; Timer/Counter0 Output Compare Match A Interrupt Enable
+                                 .equ	OCIE0B	= 3	; Timer/Counter0 Output Compare Match B Interrupt Enable
+                                 
+                                 ; TIFR0 - Timer/Counter0 Interrupt Flag register
+                                 .equ	TOV0	= 1	; Timer/Counter0 Overflow Flag
+                                 .equ	OCF0A	= 2	; Timer/Counter0 Output Compare Flag 0A
+                                 .equ	OCF0B	= 3	; Timer/Counter0 Output Compare Flag 0B
+                                 
+                                 ; OCR0A - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0A_0	= 0	; 
+                                 .equ	OCR0A_1	= 1	; 
+                                 .equ	OCR0A_2	= 2	; 
+                                 .equ	OCR0A_3	= 3	; 
+                                 .equ	OCR0A_4	= 4	; 
+                                 .equ	OCR0A_5	= 5	; 
+                                 .equ	OCR0A_6	= 6	; 
+                                 .equ	OCR0A_7	= 7	; 
+                                 
+                                 ; TCCR0A - Timer/Counter  Control Register A
+                                 .equ	WGM00	= 0	; Waveform Generation Mode
+                                 .equ	WGM01	= 1	; Waveform Generation Mode
+                                 .equ	COM0B0	= 4	; Compare Match Output B Mode
+                                 .equ	COM0B1	= 5	; Compare Match Output B Mode
+                                 .equ	COM0A0	= 6	; Compare Match Output A Mode
+                                 .equ	COM0A1	= 7	; Compare Match Output A Mode
+                                 
+                                 ; TCNT0 - Timer/Counter0
+                                 .equ	TCNT0_0	= 0	; 
+                                 .equ	TCNT0_1	= 1	; 
+                                 .equ	TCNT0_2	= 2	; 
+                                 .equ	TCNT0_3	= 3	; 
+                                 .equ	TCNT0_4	= 4	; 
+                                 .equ	TCNT0_5	= 5	; 
+                                 .equ	TCNT0_6	= 6	; 
+                                 .equ	TCNT0_7	= 7	; 
+                                 
+                                 ; TCCR0B - Timer/Counter Control Register B
+                                 .equ	CS00	= 0	; Clock Select
+                                 .equ	CS01	= 1	; Clock Select
+                                 .equ	CS02	= 2	; Clock Select
+                                 .equ	WGM02	= 3	; Waveform Generation Mode
+                                 .equ	FOC0B	= 6	; Force Output Compare B
+                                 .equ	FOC0A	= 7	; Force Output Compare A
+                                 
+                                 ; OCR0B - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0B_0	= 0	; 
+                                 .equ	OCR0B_1	= 1	; 
+                                 .equ	OCR0B_2	= 2	; 
+                                 .equ	OCR0B_3	= 3	; 
+                                 .equ	OCR0B_4	= 4	; 
+                                 .equ	OCR0B_5	= 5	; 
+                                 .equ	OCR0B_6	= 6	; 
+                                 .equ	OCR0B_7	= 7	; 
+                                 
+                                 ; GTCCR - General Timer Conuter Register
+                                 .equ	PSR10	= 0	; Prescaler Reset Timer/Counter0
+                                 .equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** WATCHDOG *********************
+                                 ; WDTCR - Watchdog Timer Control Register
+                                 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
+                                 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
+                                 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
+                                 .equ	WDE	= 3	; Watch Dog Enable
+                                 .equ	WDCE	= 4	; Watchdog Change Enable
+                                 .equ	WDP3	= 5	; Watchdog Timer Prescaler Bit 3
+                                 .equ	WDTIE	= 6	; Watchdog Timeout Interrupt Enable
+                                 .equ	WDTIF	= 7	; Watchdog Timeout Interrupt Flag
+                                 
+                                 
+                                 ; ***** CPU **************************
+                                 ; SREG - Status Register
+                                 .equ	SREG_C	= 0	; Carry Flag
+                                 .equ	SREG_Z	= 1	; Zero Flag
+                                 .equ	SREG_N	= 2	; Negative Flag
+                                 .equ	SREG_V	= 3	; Two's Complement Overflow Flag
+                                 .equ	SREG_S	= 4	; Sign Bit
+                                 .equ	SREG_H	= 5	; Half Carry Flag
+                                 .equ	SREG_T	= 6	; Bit Copy Storage
+                                 .equ	SREG_I	= 7	; Global Interrupt Enable
+                                 
+                                 ; SPL - Stack Pointer Low Byte
+                                 .equ	SP0	= 0	; Stack Pointer Bit 0
+                                 .equ	SP1	= 1	; Stack Pointer Bit 1
+                                 .equ	SP2	= 2	; Stack Pointer Bit 2
+                                 .equ	SP3	= 3	; Stack Pointer Bit 3
+                                 .equ	SP4	= 4	; Stack Pointer Bit 4
+                                 .equ	SP5	= 5	; Stack Pointer Bit 5
+                                 .equ	SP6	= 6	; Stack Pointer Bit 6
+                                 .equ	SP7	= 7	; Stack Pointer Bit 7
+                                 
+                                 ; MCUCR - MCU Control Register
+                                 ;.equ	ISC00	= 0	; Interrupt Sense Control 0 bit 0
+                                 ;.equ	ISC01	= 1	; Interrupt Sense Control 0 bit 1
+                                 .equ	SM0	= 3	; Sleep Mode Select Bit 0
+                                 .equ	SM1	= 4	; Sleep Mode Select Bit 1
+                                 .equ	SE	= 5	; Sleep Enable
+                                 .equ	PUD	= 6	; Pull-up Disable
+                                 
+                                 ; MCUSR - MCU Status register
+                                 .equ	PORF	= 0	; Power-On Reset Flag
+                                 .equ	EXTRF	= 1	; External Reset Flag
+                                 .equ	BORF	= 2	; Brown-out Reset Flag
+                                 .equ	WDRF	= 3	; Watchdog Reset Flag
+                                 
+                                 ; OSCCAL - Oscillator Calibration Register
+                                 .equ	CAL0	= 0	; Oscillatro Calibration Value Bit 0
+                                 .equ	CAL1	= 1	; Oscillatro Calibration Value Bit 1
+                                 .equ	CAL2	= 2	; Oscillatro Calibration Value Bit 2
+                                 .equ	CAL3	= 3	; Oscillatro Calibration Value Bit 3
+                                 .equ	CAL4	= 4	; Oscillatro Calibration Value Bit 4
+                                 .equ	CAL5	= 5	; Oscillatro Calibration Value Bit 5
+                                 .equ	CAL6	= 6	; Oscillatro Calibration Value Bit 6
+                                 
+                                 ; CLKPR - Clock Prescale Register
+                                 .equ	CLKPS0	= 0	; Clock Prescaler Select Bit 0
+                                 .equ	CLKPS1	= 1	; Clock Prescaler Select Bit 1
+                                 .equ	CLKPS2	= 2	; Clock Prescaler Select Bit 2
+                                 .equ	CLKPS3	= 3	; Clock Prescaler Select Bit 3
+                                 .equ	CLKPCE	= 7	; Clock Prescaler Change Enable
+                                 
+                                 ; DWDR - Debug Wire Data Register
+                                 .equ	DWDR0	= 0	; Debug Wire Data Register Bit 0
+                                 .equ	DWDR1	= 1	; Debug Wire Data Register Bit 1
+                                 .equ	DWDR2	= 2	; Debug Wire Data Register Bit 2
+                                 .equ	DWDR3	= 3	; Debug Wire Data Register Bit 3
+                                 .equ	DWDR4	= 4	; Debug Wire Data Register Bit 4
+                                 .equ	DWDR5	= 5	; Debug Wire Data Register Bit 5
+                                 .equ	DWDR6	= 6	; Debug Wire Data Register Bit 6
+                                 .equ	DWDR7	= 7	; Debug Wire Data Register Bit 7
+                                 
+                                 ; SPMCSR - Store Program Memory Control and Status Register
+                                 .equ	SPMEN	= 0	; Store program Memory Enable
+                                 .equ	PGERS	= 1	; Page Erase
+                                 .equ	PGWRT	= 2	; Page Write
+                                 .equ	RFLB	= 3	; Read Fuse and Lock Bits
+                                 .equ	CTPB	= 4	; Clear Temporary Page Buffer
+                                 
+                                 ; PRR - Power Reduction Register
+                                 .equ	PRADC	= 0	; Power Reduction ADC
+                                 .equ	PRTIM0	= 1	; Power Reduction Timer/Counter0
+                                 
+                                 ; BODCR - BOD Control Register
+                                 .equ	BPDSE	= 0	; BOD Power-Down Sleep Enable
+                                 .equ	BPDS	= 1	; BOD Power-Down in Power-Down Sleep
+                                 
+                                 
+                                 
+                                 ; ***** LOCKSBITS ********************************************************
+                                 .equ	LB1	= 0	; Lockbit
+                                 .equ	LB2	= 1	; Lockbit
+                                 
+                                 
+                                 ; ***** FUSES ************************************************************
+                                 ; LOW fuse bits
+                                 .equ	CKSEL0	= 0	; Select Clock Source
+                                 .equ	CKSEL1	= 1	; Select Clock Source
+                                 .equ	SUT0	= 2	; Select start-up time
+                                 .equ	SUT1	= 3	; Select start-up time
+                                 .equ	CKDIV8	= 4	; Start up with system clock divided by 8
+                                 .equ	WDTON	= 5	; Watch dog timer always on
+                                 .equ	EESAVE	= 6	; Keep EEprom contents during chip erase
+                                 .equ	SPIEN	= 7	; SPI programming enable
+                                 
+                                 ; HIGH fuse bits
+                                 .equ	RSTDISBL	= 0	; Disable external reset
+                                 .equ	BODLEVEL0	= 1	; Enable BOD and select level
+                                 .equ	BODLEVEL1	= 2	; Enable BOD and select level
+                                 .equ	DWEN	= 3	; DebugWire Enable
+                                 .equ	SELFPRGEN	= 4	; Self Programming Enable
+                                 
+                                 
+                                 
+                                 ; ***** CPU REGISTER DEFINITIONS *****************************************
+                                 .def	XH	= r27
+                                 .def	XL	= r26
+                                 .def	YH	= r29
+                                 .def	YL	= r28
+                                 .def	ZH	= r31
+                                 .def	ZL	= r30
+                                 
+                                 
+                                 
+                                 ; ***** DATA MEMORY DECLARATIONS *****************************************
+                                 .equ	FLASHEND	= 0x01ff	; Note: Word address
+                                 .equ	IOEND	= 0x003f
+                                 .equ	SRAM_START	= 0x0060
+                                 .equ	SRAM_SIZE	= 64
+                                 .equ	RAMEND	= 0x009f
+                                 .equ	XRAMEND	= 0x0000
+                                 .equ	E2END	= 0x003f
+                                 .equ	EEPROMEND	= 0x003f
+                                 .equ	EEADRBITS	= 6
+                                 #pragma AVRPART MEMORY PROG_FLASH 1024
+                                 #pragma AVRPART MEMORY EEPROM 64
+                                 #pragma AVRPART MEMORY INT_SRAM SIZE 64
+                                 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x60
+                                 
+                                 
+                                 
+                                 ; ***** BOOTLOADER DECLARATIONS ******************************************
+                                 .equ	PAGESIZE	= 16
+                                 
+                                 
+                                 
+                                 ; ***** INTERRUPT VECTORS ************************************************
+                                 .equ	INT0addr	= 0x0001	; External Interrupt 0
+                                 .equ	PCI0addr	= 0x0002	; External Interrupt Request 0
+                                 .equ	OVF0addr	= 0x0003	; Timer/Counter0 Overflow
+                                 .equ	ERDYaddr	= 0x0004	; EEPROM Ready
+                                 .equ	ACIaddr	= 0x0005	; Analog Comparator
+                                 .equ	OC0Aaddr	= 0x0006	; Timer/Counter Compare Match A
+                                 .equ	OC0Baddr	= 0x0007	; Timer/Counter Compare Match B
+                                 .equ	WDTaddr	= 0x0008	; Watchdog Time-out
+                                 .equ	ADCCaddr	= 0x0009	; ADC Conversion Complete
+                                 
+                                 .equ	INT_VECTORS_SIZE	= 10	; size in words
+                                 
+                                 #endif  /* _TN13ADEF_INC_ */
+                                 
+                                 ; ***** END OF FILE ******************************************************
+                                 
+                                 ; LG_IR.asm
+                                 ;
+                                 ; Created: 16/9/2026 20:25:35
+                                 ; Author : Jorge
+                                 ;
+                                 ;
+                                 ; Programar CKSEL[1:0] = 010 /LFuse = 0x7A (RC interno a 9.6Mhz)
+                                 ;
+                                 
+                                 .dseg                   ; Cambiar al segmento de datos (SRAM)
+                                 .org SRAM_START         ; Iniciar en la primera dirección de la SRAM
+000060                           mi_var: .byte 1         ; Reservar 1 byte de espacio
+000061                           old_var: .byte 1        ; Reservar 1 byte de espacio
+000062                           byte_var: .byte 1       ; Reservar 1 byte de espacio
+000063                           addr_var: .byte 1       ; Reservar 1 byte de espacio
+000064                           data_var: .byte 1       ; Reservar 1 byte de espacio
+                                 
+                                 .eseg                   ; Define el inicio del segmento de EEPROM
+                                 .org 0x00
+000000 04
+000001 fb                        code_1: .db 0x04, 0xFB  ; Código InStart
+000002 04
+000003 ff                        code_2: .db 0x04, 0xFF  ; Código EzAdjust
+000004 04
+000005 fe                        code_3: .db 0x04, 0xFE  ; Código PowerOnly
+                                 
+                                 .cseg                   ; Define el inicio del segmento de código
+                                 .org 0x0000             ; Vector de Reset
+000000 c002                         rjmp RESET
+                                 
+                                 .org PCI0addr
+000002 c0af                          rjmp PCINT0_ISR     ; Vector de interrupción por cambio de pin (PCINT0)
+                                 
+                                 RESET:
+                                     ; --- Inicialización del puntero de pila (Stack Pointer) ---
+000003 e90f                          ldi r16, LOW(RAMEND)
+000004 bf0d                          out SPL, r16
+                                 
+                                     ; --- Secuencia crítica de cambio de reloj (CLKPR) ---
+000005 94f8                          cli                     ; Deshabilitar interrupciones por seguridad     
+                                 
+                                 	; almacena la mascara de control en las variables mi_var y old_var
+000006 e10c                      	ldi r16, 0b00011100    ; Cargar mascara en el registro r16
+000007 9300 0060                     sts mi_var, r16
+000009 9300 0061                 	sts old_var, r16
+                                 
+                                 	; --- Define pines de entrada, salida y sus estados 
+00000b e003                      	ldi r16, 0b00000011 ; all ports set to output   0000 0011 
+00000c bb07                      	out DDRB,R16   ; Set OUTput ports.
+                                 
+                                     ; Activar resistencia Pull-Up en PB5, PB4 y PB3 y salida PB2 en 1 (alto)
+00000d e10e                          ldi r16, 0b00011110
+00000e bb08                      	out PORTB, r16
+                                 
+                                 	; Apagar el ADC para ahorrar energía
+00000f 9837                      	cbi ADCSRA, ADEN
+                                 
+                                 	; --- Configura TIMER0 en modo CTC 
+000010 e001                      	ldi r16,(1<<CS00)  ; clock counter with I/O clock/1
+000011 bf03                      	out TCCR0B,R16
+                                 	
+000012 e402                      	ldi r16,(1<<WGM01)|(1<<COM0A0)  ; WGM[2:0] = 0x2 sets CTC mode. COM0A0 = 1 : toggle pins output with compare match
+000013 bd0f                      	out TCCR0A,R16
+                                 
+                                 	;ldi R16,(1<<OCIE0A)  ; Output Compare_0 interrupt enable
+                                 	;out TIMSK,R16
+                                 
+000014 e70e                      	ldi r16, 126 ; cuenta hasta 127-1, unos 13uSeg
+000015 bf06                      	out OCR0A,R16
+                                 	
+                                 	; --- Habilitar la interrupción por cambio de pin en GIMSK (General Interrupt Mask Register)
+                                     ;in  r16, GIMSK
+                                     ;sbi GIMSK, 5    ; Activa Pin Change Interrupt Enable 0
+000016 e200                      	ldi r16, (1<<PCIE)
+000017 bf0b                          out GIMSK, r16
+                                 
+                                     ; 5. Seleccionar qué pin(es) dentro del grupo activan la interrupción en PCMSK (Pin Change Mask Register)
+000018 e10c                          ldi r16, (1 << PCINT4)|(1 << PCINT3)|(1 << PCINT2)
+000019 bb05                          out PCMSK, r16      ; Habilita PCINT0 específicamente
+00001a d019                      	rcall clr_cont
+                                 
+00001b 9478                          sei                     ; Reorientar interrupciones
+00001c c000                      	rjmp main
+                                 
+                                 ; ############################################################################################################
+                                 
+                                 main:
+00001d 9621                         adiw r28, 1
+00001e 23cd                         and r28, r29
+00001f 3fcf                         cpi r28, 0xff
+000020 f421                         brne Q1
+000021 94f3                         inc r15
+000022 2d0f                         mov r16, r15
+000023 3f0f                         cpi r16, 0xff
+000024 f061                         breq to_pd
+                                 
+000025 9100 0060                 Q1: lds r16, mi_var
+000027 310c                          cpi r16, 0b00011100     ; Si no se presiono ningun botón salta a "main"
+000028 f3a1                          breq main
+                                     ; Si se presiono algún boton...
+000029 d07c                          rcall delay_100ms
+00002a 9110 0061                     lds r17, old_var
+00002c 1701                          cp r16,r17
+00002d f091                          breq boton_sel
+00002e 9300 0061                     sts old_var, r16
+000030 cfec                          rjmp main
+                                 
+                                 to_pd:
+000031 d002                         rcall clr_cont
+000032 d005                         rcall power_down
+000033 cfe9                         rjmp main
+                                 
+                                 ; ############################################################################################################
+                                 
+                                 clr_cont:
+000034 e0c0                          ldi r28, 0x00
+000035 2fdc                      	mov r29, r28
+000036 2efc                      	mov r15, r28
+000037 9508                      	ret
+                                 
+                                 
+                                 power_down:
+                                 ; Configurar bits SM1=1, SM0=0 (Power-down) y SE=1 (Sleep Enable)
+000038 930f                          push r16
+000039 e300                      	ldi r16, (1 << SM1) | (1 << SE)
+00003a bf05                          out MCUCR, r16
+                                 
+00003b 9588                          sleep               ; El ATtiny13 se duerme por completo aquí
+                                 
+                                     ; Al despertar por el botón, el código continúa desde aquí:
+00003c e000                          ldi r16, 0x00
+00003d bf05                          out MCUCR, r16      ; Deshabilita el modo sleep por seguridad (SE=0)
+00003e 910f                      	pop r16
+00003f 9508                          ret
+                                 
+                                 boton_sel:
+000040 6800                         sbr r16, 0x80  ; Activa bit indicador de interrupción atendida (0b10000000)
+                                    ; Si boton 1 presionado
+000041 ff02                         sbrs r16, 2
+000042 c005                         rjmp boton_1
+                                    ;nop
+                                    ; Si boton 2 presionado
+000043 ff03                         sbrs r16, 3
+000044 c006                         rjmp boton_2
+                                    ;nop
+                                    ; Si boton 3 presionado
+000045 ff04                         sbrs r16, 4
+000046 c007                         rjmp boton_3
+                                    ;nop
+000047 cfd5                         rjmp main
+                                 
+                                 boton_1:
+000048 6004                         ori R16, 0b00000100   ; Borra botón 1 presionado
+000049 e080                         ldi r24, LOW(code_1)
+00004a c005                         rjmp boton_x
+                                 
+                                 boton_2:
+00004b 6008                         ori R16, 0b00001000   ; Borra botón 2 presionado
+00004c e082                         ldi r24, LOW(code_2)
+00004d c002                         rjmp boton_x
+                                 
+                                 boton_3:
+00004e 6100                         ori R16, 0b00010000   ; Borra botón 3 presionado
+00004f e084                         ldi r24, LOW(code_3)
+                                 
+                                 boton_x:
+000050 d005                         rcall eprom_word_rd
+000051 d016                         rcall send_trama
+000052 770f                         cbr r16, 0b10000000
+000053 9300 0060                    sts mi_var, r16       ; Borra botón presionado en "mi_var"
+000055 cfc7                         rjmp main
+                                 
+                                 
+                                 eprom_word_rd:
+000056 931f                          push r17            ; Guarda el contenido de R17
+000057 99e1                      L1: sbic EECR, EEPE
+000058 cffe                          rjmp L1
+000059 bb8e                      	out EEAR, r24
+00005a 9ae0                      	sbi EECR, EERE
+00005b b31d                      	in r17, EEDR
+00005c 9310 0063                 	sts addr_var, r17
+00005e 9583                      	inc r24
+00005f 99e1                      L2: sbic EECR, EEPE
+000060 cffe                          rjmp L2
+000061 bb8e                      	out EEAR, r24
+000062 9ae0                      	sbi EECR, EERE
+000063 b31d                      	in r17, EEDR
+000064 9310 0064                 	sts data_var, r17
+000066 911f                      	pop r17
+000067 9508                      	ret
+                                 
+                                 
+                                 send_trama:
+000068 930f                      	push r16             ; Guarda el contenido de R16
+000069 d024                      	rcall IR_long_pulse  ; Pulso de inicio de Trama
+00006a 9100 0063                 	lds r16, addr_var    ; Carga addr
+00006c d006                      	rcall send_cmp_bytes
+00006d 9100 0064                 	lds r16, data_var    ; Carga data
+00006f d003                      	rcall send_cmp_bytes
+000070 d023                      	rcall IR_short_pulse ; Pulso de fin de trama
+000071 910f                      	pop r16              ; Restaura el contenido de r16
+000072 9508                      	ret
+                                 
+                                 send_cmp_bytes:         ; Envia un byte seguido de su complento a uno
+000073 9300 0062                 	sts byte_var, r16
+000075 d005                      	rcall send_byte
+000076 9100 0062                 	lds r16, byte_var
+000078 9500                      	com r16
+000079 d001                      	rcall send_byte
+00007a 9508                      	ret
+                                 
+                                 send_byte:              ; Envia el contenido de R16
+00007b 931f                          push r17            ; Guarda el contenido de R17
+00007c e018                      	ldi r17, 8
+00007d 9506                      T1: lsr r16
+00007e f010                          brcs B1
+00007f d00b                      	rcall send_bit_0
+000080 c001                      	rjmp T2
+000081 d004                      B1: rcall send_bit_1
+000082 951a                      T2: dec r17
+000083 f7c9                          brne T1
+000084 911f                      	pop r17             ; Restaura el contenido de r17
+000085 9508                      	ret
+                                 
+                                 send_bit_1:
+000086 d00d                          rcall IR_short_pulse
+000087 d010                      	rcall delay_560us
+000088 d00f                      	rcall delay_560us
+000089 d00e                      	rcall delay_560us
+00008a 9508                      	ret
+                                 
+                                 send_bit_0:
+00008b d008                      	rcall IR_short_pulse
+00008c d00b                      	rcall delay_560us
+00008d 9508                      	ret
+                                 
+                                 	IR_long_pulse:
+00008e 98c1                          cbi PORTB, 1 ;Led ON a 38KHz
+00008f d00f                      	rcall delay_4500us
+000090 d00e                      	rcall delay_4500us
+000091 9ac1                      	sbi PORTB, 1 ;Led OFF
+000092 d00c                      	rcall delay_4500us
+000093 9508                      	ret
+                                 
+                                 IR_short_pulse:
+000094 98c1                          cbi PORTB, 1 ;Led ON a 38KHz
+000095 d002                      	rcall delay_560us
+000096 9ac1                      	sbi PORTB, 1 ;Led OFF
+000097 9508                      	ret
+                                 
+                                 delay_560us:
+000098 e097                          ldi r25, 7              ; Multiplicador externo (1 ciclo)
+000099 ef8f                      X1: ldi r24, 255            ; Multiplicador interno (1 ciclo) 248/250
+00009a 958a                      X2: dec r24                 ; 1 ciclo
+00009b f7f1                          brne X2                 ; 2 ciclos si salta, 1 si no
+00009c 959a                          dec r25                 ; 1 ciclo
+00009d f7d9                          brne X1                 ; 2 ciclos si salta
+00009e 9508                          ret                     ; Retorno (4 ciclos)
+                                 
+                                 
+                                 delay_4500us:
+00009f e399                          ldi r25, 57             ; Multiplicador externo (1 ciclo)
+0000a0 ef8f                      Y1: ldi r24, 255            ; Multiplicador interno (1 ciclo)
+0000a1 958a                      Y2: dec r24                 ; 1 ciclo
+0000a2 f7f1                          brne Y2                 ; 2 ciclos si salta, 1 si no
+0000a3 959a                          dec r25                 ; 1 ciclo
+0000a4 f7d9                          brne Y1                 ; 2 ciclos si salta
+0000a5 9508                          ret                     ; Retorno (4 ciclos)
+                                 
+                                 ;--- Pausa de 100mSeg
+                                 delay_100ms:
+0000a6 e095                          ldi r25, 5
+0000a7 939f                      Z0:	push r25
+0000a8 ef9d                          ldi r25, 253            ; Multiplicador externo (1 ciclo)
+0000a9 ef8e                      Z1: ldi r24, 254            ; Multiplicador interno (1 ciclo)
+0000aa 958a                      Z2: dec r24                 ; 1 ciclo
+0000ab f7f1                          brne Z2                 ; 2 ciclos si salta, 1 si no
+0000ac 959a                          dec r25                 ; 1 ciclo
+0000ad f7d9                          brne Z1                 ; 2 ciclos si salta
+0000ae 919f                      	pop r25
+0000af 959a                      	dec r25
+0000b0 f7b1                      	brne Z0
+0000b1 9508                          ret                     ; Retorno (4 ciclos)                    ; Retorno (4 ciclos)
+                                 
+                                 ; *******************************************************************************
+                                 PCINT0_ISR:
+                                     ; Rutina de servicio de interrupción
+0000b2 930f                      	push r16            ; Guarda el contenido de R16
+                                 
+0000b3 9100 0060                 	lds r16, mi_var
+0000b5 fd07                      	sbrc r16, 7
+0000b6 c006                      	rjmp no_salva
+                                 
+0000b7 b70f                          in  r16, SREG       ; Guardar SREG por seguridad
+0000b8 930f                          push r16
+                                 
+0000b9 b306                          in  r16, PINB
+0000ba 710c                      	andi r16, 0b00011100
+0000bb 9300 0060                     sts mi_var, r16     ; 0b000xxx00 -> mi_var
+                                 
+                                 no_salva:
+0000bd 910f                          pop r16             ; Restaurar SREG
+0000be bf0f                          out SREG, r16
+0000bf 910f                      	pop r16             ; Restaura el contenido de R16
+0000c0 9518                          reti                ; Retorno de interrupción
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+"ATtiny13A" register use summary:
+x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
+r13:   0 r14:   0 r15:   3 r16:  59 r17:  12 r18:   0 r19:   0 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:  12 r25:  10 r26:   0 r27:   0 r28:   6 
+r29:   2 r30:   0 r31:   0 
+Registers used: 7 out of 35 (20.0%)
+
+"ATtiny13A" instruction use summary:
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   1 and   :   1 
+andi  :   1 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   1 break :   0 breq  :   3 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brne  :   9 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 cbi   :   3 cbr   :   1 clc   :   0 
+clh   :   0 cli   :   1 cln   :   0 clr   :   0 cls   :   0 clt   :   0 
+clv   :   0 clz   :   0 com   :   1 cp    :   1 cpc   :   0 cpi   :   3 
+cpse  :   0 dec   :   8 eor   :   0 icall :   0 ijmp  :   0 in    :   4 
+inc   :   2 ld    :   0 ldd   :   0 ldi   :  23 lds   :   6 lpm   :   0 
+lsl   :   0 lsr   :   1 mov   :   3 movw  :   0 neg   :   0 nop   :   0 
+or    :   0 ori   :   3 out   :  13 pop   :   7 push  :   7 rcall :  24 
+ret   :  13 reti  :   1 rjmp  :  16 rol   :   0 ror   :   0 sbc   :   0 
+sbci  :   0 sbi   :   4 sbic  :   2 sbis  :   0 sbiw  :   0 sbr   :   1 
+sbrc  :   1 sbrs  :   3 sec   :   0 seh   :   0 sei   :   1 sen   :   0 
+ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   1 
+spm   :   0 st    :   0 std   :   0 sts   :   8 sub   :   0 subi  :   0 
+swap  :   0 tst   :   0 wdr   :   0 
+Instructions used: 35 out of 105 (33.3%)
+
+"ATtiny13A" memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x000182    384      0    384    1024  37.5%
+[.dseg] 0x000060 0x000065      0      5      5      64   7.8%
+[.eseg] 0x000000 0x000006      0      6      6      64   9.4%
+
+Assembly complete, 0 errors, 0 warnings
