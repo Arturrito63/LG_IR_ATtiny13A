@@ -5,8 +5,7 @@
 
 ### Descripción...
 
-Este proyecto es similar al [LG_IR_ATtiny85](https://github.com/Arturrito63/LG_IR_ATtiny85) pero aqui utilizo un ATtiny13A. En el diagrama de arriba la alimentacón es de 9Vots que se reducen a 5Volts a través de un 78L05, este puede reemplazarse con un conector USB y alimentarse con 5VDC regulados.  
-Si bien el MCU puede trabajar con tensiones mas bajas, se necesita un reloj interno a 9.6Mhz y esto se logra por encima de los 4Volts.
+Este proyecto es similar al [LG_IR_ATtiny85](https://github.com/Arturrito63/LG_IR_ATtiny85) pero aquí utilizo un ATtiny13A. En el diagrama de arriba el MCU se alimenta con una batería de 3.7V de tipo recargable, esta tensión es suficiente para que pueda operar a 9.6Mz.  
 
 El [Protocolo NEC](https://www.sbprojects.net/knowledge/ir/nec.php) utiliza una portadora (carrier) de 38KHhz sobre la cual se envían los pulsos de marca (inicio), dirección (addr) y datos (data).
 
